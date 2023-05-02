@@ -14,11 +14,11 @@ public class UserController {
 
     @PutMapping(value = "{id}/block")
     public GenericEntityDto blockUser(@PathVariable("id") Long id) {
-        return new GenericEntityDto(id, "user is blocked");
+        return new GenericEntityDto();
     }
 
     @PutMapping(value = "{id}/generate")
     public GenericEntityDto generateKey(@PathVariable("id") Long id) {
-        return new GenericEntityDto(id, "key generated");
+        return new GenericEntityDto();
     }
 }
