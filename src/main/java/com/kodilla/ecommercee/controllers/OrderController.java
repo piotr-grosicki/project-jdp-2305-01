@@ -17,8 +17,8 @@ public class OrderController {
     public void createOrder(@RequestBody OrderDto orderDto){
 
     }
-    @GetMapping(value = "{OrderId}")
-    public OrderDto getOrder(@PathVariable int OrderId) {
+    @GetMapping(value = "{orderId}")
+    public OrderDto getOrder(@PathVariable int orderId) {
         return new OrderDto();
     }
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -26,8 +26,8 @@ public class OrderController {
         return new OrderDto();
     }
 
-    @DeleteMapping(value = "{OrderId}")
-    public void deleteOrder(@PathVariable int OrderId){
+    @DeleteMapping(value = "{orderId}")
+    public void deleteOrder(@PathVariable int orderId){
 
     }
 }
