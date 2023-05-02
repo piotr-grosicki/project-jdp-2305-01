@@ -16,13 +16,14 @@ public class Order {
     private Long ID;
     private Date ORDER_DATE;
     private boolean IS_PAID;
+    /**
     private User USER_LIST;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     public User getUSER_LIST() {
         return USER_LIST;
-    }
+    }*/
 
     @Id
     @GeneratedValue
