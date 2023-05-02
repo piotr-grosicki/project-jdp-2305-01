@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.GenericEntity;
+import com.kodilla.ecommercee.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,21 +12,21 @@ import java.util.List;
 public class ProductController {
 
     @GetMapping
-    public List<GenericEntity> getProducts(){
+    public List<ProductDto> getProducts(){
         return new ArrayList<>();
     }
 
     @GetMapping(value = "{id}")
-    public GenericEntity getProduct(Long productId){
-        return new GenericEntity();
+    public ProductDto getProduct(Long productId){
+        return new ProductDto();
     }
 
     @PostMapping
-    public void createProduct(GenericEntity product){}
+    public void createProduct(ProductDto product){}
 
     @PutMapping
-    public GenericEntity updateProduct(GenericEntity product){
-        return new GenericEntity();
+    public ProductDto updateProduct(ProductDto product){
+        return new ProductDto();
     }
 
     @DeleteMapping
