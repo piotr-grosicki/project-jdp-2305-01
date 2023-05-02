@@ -13,32 +13,32 @@ import java.util.Date;
 @Table(name = "ORDERS")
 public class Order {
 
-    private Long ID;
-    private Date ORDER_DATE;
-    private boolean IS_PAID;
+    private Long id;
+    private Date orderDate;
+    private boolean isPaid;
     /**
-    private User USER_LIST;
+    private User userList;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
-    public User getUSER_LIST() {
-        return USER_LIST;
+    public User getUserList() {
+        return userList;
     }*/
 
     @Id
     @GeneratedValue
     @Column(name = "ID", unique = true)
-    public Long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
     @Column(name = "ORDER_DATE")
-    public Date getORDER_DATE() {
-        return ORDER_DATE;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
     @Column(name = "IS_PAID")
-    public boolean isIS_PAID() {
-        return IS_PAID;
+    public boolean isPaid() {
+        return isPaid;
     }
 }
