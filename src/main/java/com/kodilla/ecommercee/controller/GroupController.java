@@ -1,24 +1,17 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.GenericEntity;
 import com.kodilla.ecommercee.domain.GroupDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/v1/groups")
 @RequiredArgsConstructor
-public class GroupController extends GenericEntity {
-
-    GroupDto groupDto;
+public class GroupController {
 
     @GetMapping
     public List<GroupDto> getGroups() {
@@ -26,7 +19,7 @@ public class GroupController extends GenericEntity {
     }
 
     @PostMapping
-    public void addGroup() {
+    public void addGroup(GroupDto groupDto) {
     }
 
     @GetMapping(value = "{groupId}")
