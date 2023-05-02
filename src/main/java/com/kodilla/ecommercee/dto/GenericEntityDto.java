@@ -1,15 +1,13 @@
-package com.kodilla.ecommercee.mapper;
+package com.kodilla.ecommercee.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 public class GenericEntityDto {
-
+    private Long id;
     private String value;
 }
