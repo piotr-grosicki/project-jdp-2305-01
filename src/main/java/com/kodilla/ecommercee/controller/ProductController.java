@@ -16,19 +16,19 @@ public class ProductController {
         return new ArrayList<>();
     }
 
-    @GetMapping(value = "{id}")
-    public ProductDto getProduct(Long productId){
+    @GetMapping(value = "{productId}")
+    public ProductDto getProduct(@PathVariable Long productId){
         return new ProductDto();
     }
 
     @PostMapping
-    public void createProduct(ProductDto product){}
+    public void createProduct(@RequestBody ProductDto product){}
 
     @PutMapping
-    public ProductDto updateProduct(ProductDto product){
+    public ProductDto updateProduct(@RequestBody ProductDto product){
         return new ProductDto();
     }
 
     @DeleteMapping
-    public void deleteProduct(Long productId){}
+    public void deleteProduct(@PathVariable Long productId){}
 }
