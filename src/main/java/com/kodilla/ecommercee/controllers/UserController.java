@@ -5,7 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/ecommercee/users")
+@RequestMapping("/v1/users")
 public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserDto addUser(@RequestBody UserDto userDto) {
