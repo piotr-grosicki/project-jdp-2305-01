@@ -29,6 +29,6 @@ public class ProductController {
         return new ProductDto();
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "{productId}")
     public void deleteProduct(@PathVariable Long productId){}
 }
