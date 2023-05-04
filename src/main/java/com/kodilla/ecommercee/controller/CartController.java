@@ -1,4 +1,4 @@
 package com.kodilla.ecommercee.controller;
 
-public class UserController {
+public class CartController {
 }
