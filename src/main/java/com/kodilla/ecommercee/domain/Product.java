@@ -4,12 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "PRODUCT")
+@Entity(name = "PRODUCTS")
 public class Product {
 
     private Long productId;
@@ -17,6 +19,8 @@ public class Product {
     private String productDescription;
     private int productQuantity;
     private BigDecimal productPrice;
+    private Group group;
+ //   private List<Cart> cart = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -39,4 +43,17 @@ public class Product {
     @NonNull
     @Column(name = "PRODUCT_PRICE")
     public BigDecimal getProductPrice(){return productPrice;}
+
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID")
+    public Group getGroup() {return group;}
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "JOIN_PRODUCT_CART",
+//            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")})
+//    public List<Cart> getCart() {return cart;}
+//
+//    private void setCart(List<Cart> cart) {this.cart = cart;}
 }
