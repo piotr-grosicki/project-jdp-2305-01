@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @AllArgsConstructor
@@ -14,7 +16,6 @@ import javax.persistence.*;
 public class Group {
     Long groupId;
     String groupName;
-
     @Id
     @GeneratedValue
     @Column(name = "GROUP_ID", unique = true)
