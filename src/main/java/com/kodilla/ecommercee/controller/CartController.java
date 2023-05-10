@@ -18,7 +18,7 @@ public class CartController {
     }
     @PostMapping(value = "{cartId}/{productId}")
     public CartDto addToCart(@PathVariable Long cartId, @PathVariable Long productId) {
-        return new CartDto(1,new BigDecimal(20));
+        return new CartDto(1,new BigDecimal(1));
     }
     @DeleteMapping(value = "{cartId}")
     public void deleteCart(@PathVariable Long cartId) {
