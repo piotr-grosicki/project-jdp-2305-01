@@ -23,7 +23,7 @@ public class Order {
     private User user;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;
