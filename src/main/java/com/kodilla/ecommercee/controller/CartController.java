@@ -1,9 +1,11 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.dto.CartDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,22 +17,20 @@ public class CartController {
         return cartDto;
     }
     @PostMapping(value = "{cartId}/{productId}")
-    public CartDto addToCart(@PathVariable int cartId, @PathVariable int productId) {
-        return new CartDto();
+    public CartDto addToCart(@PathVariable Long cartId, @PathVariable Long productId) {
+        return new CartDto(1,new BigDecimal(20));
     }
     @DeleteMapping(value = "{cartId}")
-    public void deleteCart(@PathVariable int cartId) {
+    public void deleteCart(@PathVariable Long cartId) {
     }
     @DeleteMapping(value = "{cartId}/{productId}")
-    public void deleteFromCart(@PathVariable int cartId, @PathVariable int productId) {
+    public void deleteFromCart(@PathVariable Long cartId, @PathVariable Long productId) {
     }
-    @GetMapping(value = "{cartId}/{productId}")
-    public CartDto getProduct(@PathVariable int cartId, @PathVariable int productId) {
-        return new CartDto();
-    }
-    @GetMapping
-    public List<CartDto> getProductsList() {
+    @GetMapping(value = "{cartId}")
+    public List<CartDto> getProducts(@PathVariable Long cartId) {
         return new ArrayList<>();
     }
+    @PostMapping(value = "{cartId}/order")
+    public void createOrder(@PathVariable Long cartId, @RequestBody Order order) {}
 }
 
