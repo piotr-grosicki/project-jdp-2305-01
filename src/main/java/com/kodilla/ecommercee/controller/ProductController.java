@@ -4,6 +4,7 @@ import com.kodilla.ecommercee.GenericEntity;
 import com.kodilla.ecommercee.dto.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ProductController {
 
     @GetMapping(value = "{productId}")
     public ProductDto getProduct(@PathVariable Long productId){
-        return new ProductDto();
+        return new ProductDto(1L,"Test","Test",1,new BigDecimal(1));
     }
 
     @PostMapping
@@ -26,7 +27,7 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto product){
-        return new ProductDto();
+        return new ProductDto(1L,"Test","Test",1,new BigDecimal(1));
     }
 
     @DeleteMapping(value = "{productId}")

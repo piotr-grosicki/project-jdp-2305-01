@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,14 +17,14 @@ public class Order {
     private Long id;
     private Date orderDate;
     private boolean isPaid;
-    /**
+
     private User userList;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     public User getUserList() {
         return userList;
-    }*/
+    }
 
     @Id
     @GeneratedValue
