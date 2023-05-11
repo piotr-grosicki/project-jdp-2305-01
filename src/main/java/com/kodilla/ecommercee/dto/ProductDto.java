@@ -2,7 +2,6 @@ package com.kodilla.ecommercee.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import java.math.BigDecimal;
 
 @Getter
@@ -14,5 +13,4 @@ public class ProductDto {
     private String productDescription;
     private int productQuantity;
     private BigDecimal productPrice;
-
 }

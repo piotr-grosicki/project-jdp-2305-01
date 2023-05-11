@@ -1,35 +1,52 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.GenericEntity;
+import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.exception.TaskNotFoundException;
+import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("v1/products")
 public class ProductController {
 
+    private final ProductService service;
+    private final ProductMapper productMapper;
+
     @GetMapping
-    public List<ProductDto> getProducts(){
-        return new ArrayList<>();
+    public ResponseEntity<List<ProductDto>> getProducts() {
+        List<Product> products = service.getAllProducts();
+        return ResponseEntity.ok(productMapper.mapToProductDtoList(products));
     }
 
     @GetMapping(value = "{productId}")
-    public ProductDto getProduct(@PathVariable Long productId){
-        return new ProductDto(1L,"Test","Test",1,new BigDecimal(1));
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) throws TaskNotFoundException {
+        return ResponseEntity.ok(productMapper.mapToProductDto(service.getProduct(productId)));
     }
 
-    @PostMapping
-    public void createProduct(@RequestBody ProductDto product){}
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createProduct(@RequestBody ProductDto productDto) {
+        Product product = productMapper.mapToProduct(productDto);
+        service.saveProduct(product);
+        return ResponseEntity.ok().build();
+    }
 
     @PutMapping
-    public ProductDto updateProduct(@RequestBody ProductDto product){
-        return new ProductDto(1L,"Test","Test",1,new BigDecimal(1));
+    public ResponseEntity<ProductDto> updateTask(@RequestBody ProductDto productDto) {
+        Product product = productMapper.mapToProduct(productDto);
+        Product savedProduct = service.saveProduct(product);
+        return ResponseEntity.ok(productMapper.mapToProductDto(savedProduct));
     }
 
     @DeleteMapping(value = "{productId}")
-    public void deleteProduct(@PathVariable Long productId){}
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
+        service.deleteProduct(productId);
+        return ResponseEntity.ok().build();
+    }
 }
