@@ -3,8 +3,10 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Setter
@@ -15,16 +17,18 @@ import java.util.Date;
 public class Order {
 
     private Long id;
-    private Date orderDate;
+    private LocalDate orderDate;
     private boolean isPaid;
 
-    private User userList;
+    private User user;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
-    public User getUserList() {
-        return userList;
+    public User getUser() {
+        return user;
     }
+
 
     @Id
     @GeneratedValue
@@ -34,7 +38,7 @@ public class Order {
     }
 
     @Column(name = "ORDER_DATE")
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
