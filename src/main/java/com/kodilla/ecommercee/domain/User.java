@@ -74,9 +74,9 @@ public class User {
 
     @OneToMany(
             targetEntity = Order.class,
-            mappedBy = "userList",
+            mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     public List<Order> getOrderList() {
         return orderList;
