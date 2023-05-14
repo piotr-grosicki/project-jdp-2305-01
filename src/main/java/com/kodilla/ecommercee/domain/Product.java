@@ -9,7 +9,6 @@ import java.util.List;
 
 
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "PRODUCTS")
 public class Product {
@@ -20,7 +19,16 @@ public class Product {
     private int productQuantity;
     private BigDecimal productPrice;
     private Group group;
- //   private List<Cart> cart = new ArrayList<>();
+//    private List<Cart> cart = new ArrayList<>();
+
+
+    public Product(Long productId, String productName, String productDescription, int productQuantity, BigDecimal productPrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+    }
 
     @Id
     @GeneratedValue
@@ -44,7 +52,7 @@ public class Product {
     @Column(name = "PRODUCT_PRICE")
     public BigDecimal getProductPrice(){return productPrice;}
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "GROUP_ID")
     public Group getGroup() {return group;}
 
