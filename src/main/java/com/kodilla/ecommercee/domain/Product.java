@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCTS")
@@ -26,8 +25,6 @@ public class Product {
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
     }
-
-    //   private List<Cart> cart = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -51,7 +48,7 @@ public class Product {
     @Column(name = "PRODUCT_PRICE")
     public BigDecimal getProductPrice(){return productPrice;}
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "GROUP_ID")
     public Group getGroup() {
         return group;}
