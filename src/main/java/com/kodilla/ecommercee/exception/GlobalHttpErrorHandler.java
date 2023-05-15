@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<Object> handleTaskNotFoundException(TaskNotFoundException exception) {
-        return new ResponseEntity<>("Task with given id doesn't exist!", HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException exception) {
+        return new ResponseEntity<>("Product with given id doesn't exist!", HttpStatus.BAD_REQUEST);
     }
 }

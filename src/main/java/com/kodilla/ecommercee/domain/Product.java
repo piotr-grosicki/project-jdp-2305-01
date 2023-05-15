@@ -5,9 +5,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Setter
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "PRODUCTS")
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
     private Long productId;
@@ -15,6 +16,7 @@ public class Product {
     private String productDescription;
     private int productQuantity;
     private BigDecimal productPrice;
+
     private Group group;
 
     public Product(Long productId, String productName, String productDescription, int productQuantity, BigDecimal productPrice) {

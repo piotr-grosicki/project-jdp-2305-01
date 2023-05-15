@@ -2,7 +2,7 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.dto.ProductDto;
-import com.kodilla.ecommercee.exception.TaskNotFoundException;
+import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "{productId}")
-    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) throws TaskNotFoundException {
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Long productId) throws ProductNotFoundException {
         return ResponseEntity.ok(productMapper.mapToProductDto(service.getProduct(productId)));
     }
 
@@ -38,14 +38,14 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity<ProductDto> updateTask(@RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
         Product product = productMapper.mapToProduct(productDto);
         Product savedProduct = service.saveProduct(product);
         return ResponseEntity.ok(productMapper.mapToProductDto(savedProduct));
     }
 
     @DeleteMapping(value = "{productId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) throws ProductNotFoundException {
         service.deleteProduct(productId);
         return ResponseEntity.ok().build();
     }
