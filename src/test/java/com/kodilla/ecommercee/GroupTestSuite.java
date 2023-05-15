@@ -21,9 +21,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Group test suite")
 class GroupTestSuite {
 
-
     @Autowired
     private GroupRepository groupRepository;
+
+    public static List<Group> getGroups() {
+        List<Group> groupList = new ArrayList<>();
+        groupList.add(new Group(1L, "electronic"));
+        groupList.add(new Group(2L, "tools"));
+        return groupList;
+    }
 
     @Test
     @DisplayName("Test get groups")
@@ -37,9 +43,6 @@ class GroupTestSuite {
 
         //Then
         assertEquals(2, list.size());
-
-        //CleanUp
-        groupRepository.deleteAll();
     }
 
     @Test
@@ -55,9 +58,6 @@ class GroupTestSuite {
 
         //Then
         assertEquals(3, list.size());
-
-        //CleanUp
-        groupRepository.deleteAll();
     }
 
     @Test
@@ -72,9 +72,6 @@ class GroupTestSuite {
 
         //Then
         assertTrue(findGroup.isPresent());
-
-        //ClenUp
-        groupRepository.deleteAll();
     }
 
     @Test
@@ -95,12 +92,10 @@ class GroupTestSuite {
         //Then
         assertEquals("cars", group.get(0).getGroupName());
         assertEquals(2, group.size());
-
-        //CleanUp
-        groupRepository.deleteAll();
     }
 
     @Test
+    @DisplayName("Test group save with products")
     void testGroupSaveWithProducts() {
         //Given
         Product computer = new Product(1L, "Computer", "Super Computer", 1, new BigDecimal(2500));
@@ -115,15 +110,5 @@ class GroupTestSuite {
         //Then
         assertNotEquals(0L, id);
         assertTrue(groupRepository.findById(id).isPresent());
-
-        //CleanUp
-        groupRepository.deleteById(id);
-    }
-
-    private static List<Group> getGroups() {
-        List<Group> groupList = new ArrayList<>();
-        groupList.add(new Group(1L, "electronic"));
-        groupList.add(new Group(2L, "tools"));
-        return groupList;
     }
 }
