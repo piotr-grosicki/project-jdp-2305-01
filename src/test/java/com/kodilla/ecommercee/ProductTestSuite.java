@@ -2,9 +2,11 @@ package com.kodilla.ecommercee;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kodilla.ecommercee.controller.ProductController;
+import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.repository.GroupRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +55,9 @@ public class ProductTestSuite {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private GroupRepository groupRepository;
 
     @BeforeEach
     void setUp() {
@@ -184,13 +189,17 @@ public class ProductTestSuite {
     }
 
     @Test
-    public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductByIdTest() {
+    public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductById_andWithoutDeleteGroupTest() {
         // Given
         Product product1 = new Product(1L, "Product1", "New product1",
                 1, new BigDecimal(25));
 
+        Group group1 = new Group(1L, "Group1");
+        group1.getProductList().add(product1);
+
         // When
         productRepository.save(product1);
+        Group id = groupRepository.save(group1);
 
         // Then
         MvcResult mvcResult = null;
@@ -204,6 +213,9 @@ public class ProductTestSuite {
         assert mvcResult != null;
         assertEquals(200, mvcResult.getResponse().getStatus());
         assertFalse(productRepository.existsById(product1.getProductId()));
+        assertEquals(1L, group1.getGroupId().longValue());
+        assertEquals(1, groupRepository.findAll().size());
+        assertTrue(groupRepository.existsById(id.getGroupId()));
     }
 
     public static String asJsonString(final Object obj) {
