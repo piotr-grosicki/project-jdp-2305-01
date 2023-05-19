@@ -19,22 +19,20 @@ public class Product {
     private int productQuantity;
     private BigDecimal productPrice;
     private Group group;
-    // private List<Cart> cart = new ArrayList<>();
+    //private List<Cart> cartList = new ArrayList<>();
 
     public Product(final String productName,
                    final String productDescription,
                    final int productQuantity,
-                   final BigDecimal productPrice,
-                   final Group group) {
+                   final BigDecimal productPrice) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
-        this.group = group;
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
     @Column(name = "PRODUCT_ID",unique = true)
     public Long getProductId(){return productId;}
@@ -59,12 +57,12 @@ public class Product {
     @JoinColumn(name = "GROUP_ID")
     public Group getGroup() {return group;}
 
-    /*@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-              name = "JOIN_PRODUCT_CART",
-              joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-              inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")})
-      public List<Cart> getCart() {return cart;}
-
-      private void setCart(List<Cart> cart) {this.cart = cart;}*/
+    //    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "JOIN_PRODUCT_CART",
+//            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+//            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")})
+//    public List<Cart> getCart() {return cart;}
+//
+//    private void setCart(List<Cart> cart) {this.cart = cart;}
 }
