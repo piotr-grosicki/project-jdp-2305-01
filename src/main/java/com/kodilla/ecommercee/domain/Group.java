@@ -16,8 +16,7 @@ public class Group {
     private String groupName;
     private List<Product> productList = new ArrayList<>();
 
-    public Group(Long groupId, String groupName) {
-        this.groupId = groupId;
+    public Group(String groupName) {
         this.groupName = groupName;
     }
 
@@ -38,7 +37,7 @@ public class Group {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER
     )
     public List<Product> getProductList() {

@@ -27,6 +27,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.ServletContext;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -194,7 +197,7 @@ public class ProductTestSuite {
         Product product1 = new Product(1L, "Product1", "New product1",
                 1, new BigDecimal(25));
 
-        Group group1 = new Group(1L, "Group1");
+        Group group1 = new Group("Group1");
         group1.getProductList().add(product1);
 
         // When
@@ -213,7 +216,6 @@ public class ProductTestSuite {
         assert mvcResult != null;
         assertEquals(200, mvcResult.getResponse().getStatus());
         assertFalse(productRepository.existsById(product1.getProductId()));
-        assertEquals(1L, group1.getGroupId().longValue());
         assertEquals(1, groupRepository.findAll().size());
         assertTrue(groupRepository.existsById(id.getGroupId()));
     }
