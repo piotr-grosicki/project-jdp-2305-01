@@ -1,16 +1,16 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "GROUPS")
+@Table(name = "GROUP_OF_PRODUCTS")
 public class Group {
     private Long groupId;
     private String groupName;
@@ -22,12 +22,14 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     @Column(name = "GROUP_ID", unique = true)
     public Long getGroupId() {
         return groupId;
     }
 
-    @Column(name = "GROUP_NAME", unique = true)
+    @NotNull
+    @Column(name = "GROUP_NAME")
     public String getGroupName() {
         return groupName;
     }
