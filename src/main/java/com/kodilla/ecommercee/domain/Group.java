@@ -9,13 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "GROUPS")
 public class Group {
     Long groupId;
     String groupName;
+
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "GROUP_ID", unique = true)

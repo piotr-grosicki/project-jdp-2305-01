@@ -41,6 +41,7 @@ public class GroupController {
     @PutMapping
     public ResponseEntity<GroupDto> updateGroup(@RequestBody GroupDto groupDto) throws GroupNotFoundException{
         Group group = groupMapper.mapToGroup(groupDto);
+        group.setGroupId(groupDto.getId());
         groupService.getGroup(group.getGroupId());
         Group saveGroup = groupService.saveGroup(group);
         return ResponseEntity.ok(groupMapper.mapToGroupDto(saveGroup));
