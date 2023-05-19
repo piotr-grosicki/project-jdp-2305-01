@@ -26,8 +26,8 @@ class GroupTestSuite {
 
     public static List<Group> getGroups() {
         List<Group> groupList = new ArrayList<>();
-        groupList.add(new Group(1L, "electronic"));
-        groupList.add(new Group(2L, "tools"));
+        groupList.add(new Group("electronic"));
+        groupList.add(new Group("tools"));
         return groupList;
     }
 
@@ -52,7 +52,7 @@ class GroupTestSuite {
         List<Group> groupList = getGroups();
 
         //When
-        groupList.add(new Group(3L, "cars"));
+        groupList.add(new Group("cars"));
         groupRepository.saveAll(groupList);
         List<Group> list = groupRepository.findAll();
 
@@ -85,7 +85,7 @@ class GroupTestSuite {
         System.out.println(result.get().getGroupName());
 
         //Then
-        group.set(0, new Group(1L, "cars"));
+        group.set(0, new Group("cars"));
         groupRepository.saveAll(group);
         System.out.println(groupRepository.findById(1L).get().getGroupName());
 
@@ -98,8 +98,8 @@ class GroupTestSuite {
     @DisplayName("Test group save with products")
     void testGroupSaveWithProducts() {
         //Given
-        Product computer = new Product(1L, "Computer", "Super Computer", 1, new BigDecimal(2500));
-        Group electronic = new Group(1L, "Electronic");
+        Product computer = new Product("Computer", "Super Computer", 1, new BigDecimal(2500));
+        Group electronic = new Group("Electronic");
         computer.setGroup(electronic);
         electronic.getProductList().add(computer);
 
