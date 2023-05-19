@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -22,7 +21,7 @@ public class Group {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_ID", unique = true)
     public Long getGroupId() {
         return groupId;
@@ -35,7 +34,7 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             mappedBy = "group",
             fetch = FetchType.LAZY)
     public List<Product> getProductList() {
