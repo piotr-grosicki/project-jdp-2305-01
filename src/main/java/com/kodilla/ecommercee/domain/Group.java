@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +21,13 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
+    @NonNull
     @Column(name = "GROUP_ID", unique = true)
     public Long getGroupId() {
         return groupId;
     }
 
-    @NotNull
+    @NonNull
     @Column(name = "GROUP_NAME")
     public String getGroupName() {
         return groupName;
