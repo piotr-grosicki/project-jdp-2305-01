@@ -191,20 +191,23 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductById_andWithoutDeleteGroupTest() {
         // Given
-        Product product1 = new Product("Product1", "New product1",
-                1, new BigDecimal(25));
+        Product product = new Product(
+                "Product",
+                "New product1",
+                1,
+                 new BigDecimal(25));
 
-        Group group1 = new Group("Group1");
-        group1.getProductList().add(product1);
+        Group group = new Group("Group");
+        group.getProductList().add(product);
 
         // When
-        productRepository.save(product1);
-        Group id = groupRepository.save(group1);
+        groupRepository.save(group);
+        Group groupDb = groupRepository.findByGroupId(group.getGroupId());
 
         // Then
         MvcResult mvcResult = null;
         try {
-            mvcResult = this.mockMvc.perform(delete("/v1/products/{productId}", product1.getProductId())).
+            mvcResult = this.mockMvc.perform(delete("/v1/products/{productId}", product.getProductId())).
                     andExpect(status().isOk()).andDo(print()).andReturn();
         } catch (Exception e) {
             e.getCause();
@@ -212,10 +215,10 @@ public class ProductTestSuite {
 
         assert mvcResult != null;
         assertEquals(200, mvcResult.getResponse().getStatus());
-        assertFalse(productRepository.existsById(product1.getProductId()));
-        assertEquals(1L, group1.getGroupId().longValue());
-        assertEquals(1, groupRepository.findAll().size());
-        assertTrue(groupRepository.existsById(id.getGroupId()));
+        assertFalse(productRepository.existsById(product.getProductId()));
+        assertEquals(groupDb.getGroupId(), group.getGroupId());
+        assertEquals(1, groupRepository.count());
+        assertTrue(groupRepository.existsById(groupDb.getGroupId()));
     }
 
     public static String asJsonString(final Object obj) {
