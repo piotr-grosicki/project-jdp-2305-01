@@ -78,9 +78,9 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetAllProductsTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
+        Product product1 = new Product("Product1", "New product1",
                 1, new BigDecimal(25));
-        Product product2 = new Product(2L, "Product2", "New product2",
+        Product product2 = new Product("Product2", "New product2",
                 2, new BigDecimal(50));
 
         // When
@@ -105,9 +105,9 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetProductByIdTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
+        Product product1 = new Product("Product1", "New product1",
                 1, new BigDecimal(25));
-        Product product2 = new Product(2L, "Product2", "New product2",
+        Product product2 = new Product("Product2", "New product2",
                 2, new BigDecimal(50));
 
         // When
@@ -191,10 +191,10 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductById_andWithoutDeleteGroupTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
+        Product product1 = new Product("Product1", "New product1",
                 1, new BigDecimal(25));
 
-        Group group1 = new Group(1L, "Group1");
+        Group group1 = new Group("Group1");
         group1.getProductList().add(product1);
 
         // When
