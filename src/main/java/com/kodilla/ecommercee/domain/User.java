@@ -75,7 +75,7 @@ public class User {
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "user",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.MERGE, CascadeType.REMOVE},
             fetch = FetchType.EAGER
     )
     public List<Order> getOrderList() {

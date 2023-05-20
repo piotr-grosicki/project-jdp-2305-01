@@ -9,12 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -84,14 +81,13 @@ public class UserTestSuite {
                 "Address", "123456789", "Mail", true, new ArrayList<>());
         User user2 = new User(2L, "Name2", "Lastname2", "Username2",
                 "Address2", "123456780", "Mail2", true, new ArrayList<>());
-        Order order = new Order(1L, LocalDate.of(2023,2,2), true, user);
+        Order order = new Order(LocalDate.of(2023,2,2), true, user);
 
         //When
         userRepository.save(user);
         userRepository.save(user2);
         orderRepository.save(order);
-        order.setUser(user);
-        userRepository.deleteById(1L);
+        userRepository.deleteById(user.getUserId());
 
         //Then
         assertEquals(1, userRepository.count());

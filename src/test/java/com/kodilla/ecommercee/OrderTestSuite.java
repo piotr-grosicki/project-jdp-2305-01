@@ -26,9 +26,12 @@ public class OrderTestSuite {
     @Test
     void createOrderTest() {
         //Given
-        Order order1 = new Order(LocalDate.of(2023,4,2), true, new User());
+        User user = new User(1L, "Name", "Lastname", "Username",
+                "Address", "123456789", "Mail", true, new ArrayList<>());
+        Order order1 = new Order(LocalDate.of(2023,4,2), true, user);
 
         //When
+        userRepository.save(user);
         orderRepository.save(order1);
 
         //Then
@@ -38,12 +41,15 @@ public class OrderTestSuite {
     @Test
     void getAllOrdersTest(){
         //Given
-        Order order1 = new Order(LocalDate.of(2022,5,8),false, new User());
-        Order order2 = new Order(LocalDate.of(2023,3,2),true, new User());
-        Order order3 = new Order(LocalDate.of(2023,1,10),true, new User());
-        Order order4 = new Order(LocalDate.of(2023,3,20),true, new User());
+        User user = new User(1L, "Name", "Lastname", "Username",
+                "Address", "123456789", "Mail", true, new ArrayList<>());
+        Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
+        Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
+        Order order3 = new Order(LocalDate.of(2023,1,10),true, user);
+        Order order4 = new Order(LocalDate.of(2023,3,20),true, user);
 
         //When
+        userRepository.save(user);
         orderRepository.save(order1);
         orderRepository.save(order2);
         orderRepository.save(order3);
@@ -56,10 +62,13 @@ public class OrderTestSuite {
     @Test
     void getOrderByIdTest(){
         //Given
-        Order order1 = new Order(LocalDate.of(2022,5,8),false, new User());
-        Order order2 = new Order(LocalDate.of(2023,3,2),true, new User());
+        User user = new User(1L, "Name", "Lastname", "Username",
+                "Address", "123456789", "Mail", true, new ArrayList<>());
+        Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
+        Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 
         //When
+        userRepository.save(user);
         orderRepository.save(order1);
         orderRepository.save(order2);
 
@@ -70,11 +79,11 @@ public class OrderTestSuite {
     @Test
     void deleteOrder_andWithoutDeleteUserTest() {
         //Given
-        Order order1 = new Order(LocalDate.of(2022,5,8),false, new User());
-        Order order2 = new Order(LocalDate.of(2023,3,2),true, new User());
-
         User user = new User(1L, "Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", true, new ArrayList<>());
+        Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
+        Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
+
 
         //When
         userRepository.save(user);
@@ -86,15 +95,18 @@ public class OrderTestSuite {
 
         //Then
         assertEquals(1, orderRepository.count());
-        assertEquals(2, userRepository.count());
+        assertEquals(1, userRepository.count());
     }
 
     @Test
     void orderModificationTest(){
         //Given
-        Order order1 = new Order(LocalDate.of(2022,5,8),false, new User());
-        Order order2 = new Order(LocalDate.of(2023,3,2),true, new User());
+        User user = new User(1L, "Name", "Lastname", "Username",
+                "Address", "123456789", "Mail", true, new ArrayList<>());
+        Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
+        Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 
+        userRepository.save(user);
         orderRepository.save(order1);
         orderRepository.save(order2);
 

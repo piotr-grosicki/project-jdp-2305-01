@@ -25,7 +25,7 @@ public class Order {
         this.user = user;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;

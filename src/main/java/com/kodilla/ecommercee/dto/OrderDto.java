@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Getter
 public class OrderDto {
 
+    private Long id;
     private LocalDate orderDate;
     private boolean isPaid;
     private User user;
