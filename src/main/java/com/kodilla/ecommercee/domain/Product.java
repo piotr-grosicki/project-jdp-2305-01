@@ -17,17 +17,23 @@ public class Product {
     private BigDecimal productPrice;
 
     private Group group;
+    //private List<Cart> cartList = new ArrayList<>();
 
-    public Product(Long productId, String productName, String productDescription, int productQuantity, BigDecimal productPrice) {
-        this.productId = productId;
+    public Product(final String productName,
+                   final String productDescription,
+                   final int productQuantity,
+                   final BigDecimal productPrice,
+                   final Group group)
+    {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        this.group = group;
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
     @Column(name = "PRODUCT_ID",unique = true)
     public Long getProductId(){return productId;}
@@ -48,12 +54,11 @@ public class Product {
     @Column(name = "PRODUCT_PRICE")
     public BigDecimal getProductPrice(){return productPrice;}
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "GROUP_ID")
-    public Group getGroup() {
-        return group;}
+    public Group getGroup(){return group;}
 
-//    @ManyToMany(cascade = CascadeType.ALL)
+    //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(
 //            name = "JOIN_PRODUCT_CART",
 //            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},

@@ -8,6 +8,7 @@ import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
+import com.kodilla.ecommercee.service.GroupService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.ServletContext;
+import javax.validation.GroupSequence;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -81,10 +83,10 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetAllProductsTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
-                1, new BigDecimal(25));
-        Product product2 = new Product(2L, "Product2", "New product2",
-                2, new BigDecimal(50));
+        Product product1 = new Product("Product1", "New product1",
+                1, new BigDecimal(25),null);
+        Product product2 = new Product("Product2", "New product2",
+                2, new BigDecimal(50),null);
 
         // When
         productRepository.save(product1);
@@ -108,10 +110,10 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetProductByIdTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
-                1, new BigDecimal(25));
-        Product product2 = new Product(2L, "Product2", "New product2",
-                2, new BigDecimal(50));
+        Product product1 = new Product("Product1", "New product1",
+                1, new BigDecimal(25),null);
+        Product product2 = new Product("Product2", "New product2",
+                2, new BigDecimal(50),null);
 
         // When
         productRepository.save(product1);
@@ -194,20 +196,24 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductById_andWithoutDeleteGroupTest() {
         // Given
-        Product product1 = new Product(1L, "Product1", "New product1",
-                1, new BigDecimal(25));
+        Group group = new Group("Group");
 
-        Group group1 = new Group("Group1");
-        group1.getProductList().add(product1);
+        Product product = new Product(
+                "Product",
+                "New product1",
+                1,
+                 new BigDecimal(25),group);
+
+        group.getProductList().add(product);
 
         // When
-        productRepository.save(product1);
-        Group id = groupRepository.save(group1);
+        groupRepository.save(group);
+        Group groupDb = groupRepository.findByGroupId(group.getGroupId());
 
         // Then
         MvcResult mvcResult = null;
         try {
-            mvcResult = this.mockMvc.perform(delete("/v1/products/{productId}", product1.getProductId())).
+            mvcResult = this.mockMvc.perform(delete("/v1/products/{productId}", product.getProductId())).
                     andExpect(status().isOk()).andDo(print()).andReturn();
         } catch (Exception e) {
             e.getCause();
@@ -215,9 +221,10 @@ public class ProductTestSuite {
 
         assert mvcResult != null;
         assertEquals(200, mvcResult.getResponse().getStatus());
-        assertFalse(productRepository.existsById(product1.getProductId()));
-        assertEquals(1, groupRepository.findAll().size());
-        assertTrue(groupRepository.existsById(id.getGroupId()));
+        assertFalse(productRepository.existsById(product.getProductId()));
+        assertEquals(groupDb.getGroupId(), group.getGroupId());
+        assertEquals(1, groupRepository.count());
+        assertTrue(groupRepository.existsById(groupDb.getGroupId()));
     }
 
     public static String asJsonString(final Object obj) {

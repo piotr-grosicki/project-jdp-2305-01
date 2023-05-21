@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,19 +15,20 @@ public class Group {
     private String groupName;
     private List<Product> productList = new ArrayList<>();
 
-    public Group(String groupName) {
+
+    public Group(final String groupName) {
         this.groupName = groupName;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     @Column(name = "GROUP_ID", unique = true)
     public Long getGroupId() {
         return groupId;
     }
 
-    @NotNull
+    @NonNull
     @Column(name = "GROUP_NAME")
     public String getGroupName() {
         return groupName;
@@ -36,12 +36,10 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
+            cascade = CascadeType.PERSIST,
             mappedBy = "group",
-            cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER
-    )
+            fetch = FetchType.LAZY)
     public List<Product> getProductList() {
         return productList;
     }
-
 }
