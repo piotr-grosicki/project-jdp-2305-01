@@ -98,8 +98,8 @@ class GroupTestSuite {
     @DisplayName("Test group save with products")
     void testGroupSaveWithProducts() {
         //Given
-        Product computer = new Product("Computer", "Super Computer", 1, new BigDecimal(2500));
         Group electronic = new Group("Electronic");
+        Product computer = new Product("Computer", "Super Computer", 1, new BigDecimal(2500),electronic);
         computer.setGroup(electronic);
         electronic.getProductList().add(computer);
 

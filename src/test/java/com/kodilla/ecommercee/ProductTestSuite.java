@@ -8,6 +8,7 @@ import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
+import com.kodilla.ecommercee.service.GroupService;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.ServletContext;
+import javax.validation.GroupSequence;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +56,9 @@ public class ProductTestSuite {
     private ProductService service;
 
     @Autowired
+    private GroupService groupService;
+
+    @Autowired
     private ProductMapper productMapper;
 
     @Autowired
@@ -64,7 +69,7 @@ public class ProductTestSuite {
 
     @BeforeEach
     void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(service, productMapper)).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(service, groupService, productMapper)).build();
     }
 
     @Test
@@ -82,9 +87,9 @@ public class ProductTestSuite {
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetAllProductsTest() {
         // Given
         Product product1 = new Product("Product1", "New product1",
-                1, new BigDecimal(25));
+                1, new BigDecimal(25),null);
         Product product2 = new Product("Product2", "New product2",
-                2, new BigDecimal(50));
+                2, new BigDecimal(50),null);
 
         // When
         productRepository.save(product1);
@@ -109,9 +114,9 @@ public class ProductTestSuite {
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andGetProductByIdTest() {
         // Given
         Product product1 = new Product("Product1", "New product1",
-                1, new BigDecimal(25));
+                1, new BigDecimal(25),null);
         Product product2 = new Product("Product2", "New product2",
-                2, new BigDecimal(50));
+                2, new BigDecimal(50),null);
 
         // When
         productRepository.save(product1);
@@ -194,13 +199,14 @@ public class ProductTestSuite {
     @Test
     public void givenHomePageURI_whenMockMVC_thenReturnsStatusOk_andDeleteProductById_andWithoutDeleteGroupTest() {
         // Given
+        Group group = new Group("Group");
+
         Product product = new Product(
                 "Product",
                 "New product1",
                 1,
-                 new BigDecimal(25));
+                 new BigDecimal(25),group);
 
-        Group group = new Group("Group");
         group.getProductList().add(product);
 
         // When

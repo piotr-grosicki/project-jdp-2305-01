@@ -33,16 +33,15 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
+                new BigDecimal(10),
+                group);
 
         Product product2 = new Product(
                 "Product2",
                 "Description2",
                 20,
-                new BigDecimal(20));
-
-        product1.setGroup(group);
-        product2.setGroup(group);
+                new BigDecimal(20),
+                group);
 
         group.getProductList().addAll(Arrays.asList(product1,product2));
 
@@ -63,16 +62,15 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
+                new BigDecimal(10),
+                group);
 
         Product product2 = new Product(
                 "Product2",
                 "Description2",
                 20,
-                new BigDecimal(20));
-
-        product1.setGroup(group);
-        product2.setGroup(group);
+                new BigDecimal(20),
+                group);
 
         group.getProductList().addAll(Arrays.asList(product1,product2));
 
@@ -90,9 +88,8 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
-
-        product.setGroup(null);
+                new BigDecimal(10),
+                null);
 
         // when
         productRepository.save(product);
@@ -114,16 +111,15 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
+                new BigDecimal(10),
+                group);
 
         Product product2 = new Product(
                 "Product2",
                 "Description2",
                 20,
-                new BigDecimal(20));
-
-        product1.setGroup(group);
-        product2.setGroup(group);
+                new BigDecimal(20),
+                group);
 
         group.getProductList().addAll(Arrays.asList(product1,product2));
 
@@ -153,16 +149,15 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
+                new BigDecimal(10),
+                group);
 
         Product product2 = new Product(
                 "Product2",
                 "Description2",
                 20,
-                new BigDecimal(20));
-
-        product1.setGroup(group);
-        product2.setGroup(group);
+                new BigDecimal(20),
+                group);
 
         group.getProductList().addAll(Arrays.asList(product1,product2));
         groupRepository.save(group);
@@ -190,20 +185,17 @@ public class ProductEntityTestSuite {
                 "Product1",
                 "Description1",
                 10,
-                new BigDecimal(10));
+                new BigDecimal(10),
+                group);
 
         Product product2 = new Product(
                 "Product2",
                 "Description2",
                 20,
-                new BigDecimal(20));
+                new BigDecimal(20),
+                group);
 
-        product1.setGroup(group);
-        product2.setGroup(group);
-
-        group.getProductList().add(product1);
-        group.getProductList().add(product2);
-
+        group.getProductList().addAll(Arrays.asList(product1,product2));
         groupRepository.save(group);
 
         // when
