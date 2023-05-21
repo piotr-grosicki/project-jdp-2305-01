@@ -1,12 +1,14 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
-@Setter(AccessLevel.PRIVATE)
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "USER")
@@ -22,6 +24,18 @@ public class User {
     private boolean isAuthorized;
 
     private List<Order> orderList;
+
+    public User(Long userId, String firstname, String lastname, String username, String address,
+                String phoneNumber, String email, Boolean isAuthorized){
+        this.userId = userId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isAuthorized = true;
+    }
 
     @Id
     @GeneratedValue
@@ -72,6 +86,13 @@ public class User {
         return isAuthorized;
     }
 
+    public void blockUser() {
+        this.isAuthorized = false;
+    }
+    public void unblockUser() {
+        this.isAuthorized = true;
+    }
+
     @OneToMany(
             targetEntity = Order.class,
             mappedBy = "user",
@@ -80,5 +101,20 @@ public class User {
     )
     public List<Order> getOrderList() {
         return orderList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", username='" + username + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", isAuthorized=" + isAuthorized +
+                ", orderList=" + orderList +
+                '}';
     }
 }

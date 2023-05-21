@@ -33,6 +33,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
+    testImplementation 'com.google.code.gson:gson:2.10.1'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
 }

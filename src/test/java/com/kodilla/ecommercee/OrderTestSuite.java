@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +29,7 @@ public class OrderTestSuite {
     void createOrderTest() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true, new ArrayList<>());
+                "Address", "123456789", "Mail", true);
         Order order1 = new Order(LocalDate.of(2023,4,2), true, user);
 
         //When
@@ -42,7 +44,7 @@ public class OrderTestSuite {
     void getAllOrdersTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true, new ArrayList<>());
+                "Address", "123456789", "Mail", true);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
         Order order3 = new Order(LocalDate.of(2023,1,10),true, user);
@@ -63,7 +65,7 @@ public class OrderTestSuite {
     void getOrderByIdTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true, new ArrayList<>());
+                "Address", "123456789", "Mail", true);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 
@@ -80,15 +82,18 @@ public class OrderTestSuite {
     void deleteOrder_andWithoutDeleteUserTest() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true, new ArrayList<>());
+                "Address", "123456789", "Mail", true);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
-
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(order1);
+        orderList.add(order2);
 
         //When
         userRepository.save(user);
         orderRepository.save(order1);
         orderRepository.save(order2);
+        user.setOrderList(orderList);
 
         user.getOrderList().remove(order1);
         orderRepository.delete(order1);
@@ -102,7 +107,7 @@ public class OrderTestSuite {
     void orderModificationTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true, new ArrayList<>());
+                "Address", "123456789", "Mail", true);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 
