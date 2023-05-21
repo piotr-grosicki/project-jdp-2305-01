@@ -56,9 +56,6 @@ public class ProductTestSuite {
     private ProductService service;
 
     @Autowired
-    private GroupService groupService;
-
-    @Autowired
     private ProductMapper productMapper;
 
     @Autowired
@@ -69,7 +66,7 @@ public class ProductTestSuite {
 
     @BeforeEach
     void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(service, groupService, productMapper)).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(new ProductController(service, productMapper)).build();
     }
 
     @Test
