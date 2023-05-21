@@ -15,6 +15,6 @@ public class UserDto {
     private String address;
     private String phoneNumber;
     private String email;
-    private boolean isAuthorized;
+    private boolean isBlocked;
 
 }

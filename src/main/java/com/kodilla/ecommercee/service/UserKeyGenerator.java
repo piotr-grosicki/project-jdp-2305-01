@@ -28,7 +28,7 @@ public class UserKeyGenerator {
     }
 
     public void generateKey(User user) {
-        if(user.isAuthorized()) {
+        if(!user.isBlocked()) {
             String key = generateRandomKey();
 
             System.out.println("Generated key: " + key);

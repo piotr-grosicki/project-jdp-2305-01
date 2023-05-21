@@ -33,7 +33,7 @@ public class UserTestSuite {
     void testCreateUser() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
 
         //When
         userRepository.save(user);
@@ -48,9 +48,9 @@ public class UserTestSuite {
         //Given
         List<User> userList = new ArrayList<>();
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         User user2 = new User(2L, "Name2", "Lastname2", "Username2",
-                "Address2", "123456780", "Mail2", true);
+                "Address2", "123456780", "Mail2", false);
         userList.add(user);
         userList.add(user2);
 
@@ -67,7 +67,7 @@ public class UserTestSuite {
     void testFindById() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
 
         //When
         userRepository.save(user);
@@ -81,9 +81,9 @@ public class UserTestSuite {
     void testDeleteById() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         User user2 = new User(2L, "Name2", "Lastname2", "Username2",
-                "Address2", "123456780", "Mail2", true);
+                "Address2", "123456780", "Mail2", false);
         Order order = new Order(LocalDate.of(2023,2,2), true, user);
         List<Order> orderList = new ArrayList<>();
         orderList.add(order);
@@ -105,7 +105,7 @@ public class UserTestSuite {
     void testKeyGenerator() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
 
         //Then & When
         userKeyGenerator.generateKey(user);
@@ -117,7 +117,7 @@ public class UserTestSuite {
     void TestKeyGeneratorWithBlockedUser() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
 
         //Then & When
         user.blockUser();

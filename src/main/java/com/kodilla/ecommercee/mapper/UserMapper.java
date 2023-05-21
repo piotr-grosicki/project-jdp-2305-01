@@ -18,7 +18,7 @@ public class UserMapper {
                userDto.getAddress(),
                userDto.getPhoneNumber(),
                userDto.getEmail(),
-               userDto.isAuthorized()
+               userDto.isBlocked()
         );
     }
 
@@ -31,7 +31,7 @@ public class UserMapper {
                 user.getAddress(),
                 user.getPhoneNumber(),
                 user.getEmail(),
-                user.isAuthorized()
+                user.isBlocked()
         );
     }
 

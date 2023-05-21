@@ -29,7 +29,7 @@ public class OrderTestSuite {
     void createOrderTest() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2023,4,2), true, user);
 
         //When
@@ -44,7 +44,7 @@ public class OrderTestSuite {
     void getAllOrdersTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
         Order order3 = new Order(LocalDate.of(2023,1,10),true, user);
@@ -65,7 +65,7 @@ public class OrderTestSuite {
     void getOrderByIdTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 
@@ -82,7 +82,7 @@ public class OrderTestSuite {
     void deleteOrder_andWithoutDeleteUserTest() {
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
         List<Order> orderList = new ArrayList<>();
@@ -107,7 +107,7 @@ public class OrderTestSuite {
     void orderModificationTest(){
         //Given
         User user = new User(1L, "Name", "Lastname", "Username",
-                "Address", "123456789", "Mail", true);
+                "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
 

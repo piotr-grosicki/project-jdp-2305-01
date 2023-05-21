@@ -21,12 +21,12 @@ public class User {
     private String address;
     private String phoneNumber;
     private String email;
-    private boolean isAuthorized;
+    private boolean isBlocked;
 
     private List<Order> orderList;
 
     public User(Long userId, String firstname, String lastname, String username, String address,
-                String phoneNumber, String email, Boolean isAuthorized){
+                String phoneNumber, String email, Boolean isBlocked){
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -34,7 +34,7 @@ public class User {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.isAuthorized = true;
+        this.isBlocked = isBlocked;
     }
 
     @Id
@@ -81,16 +81,16 @@ public class User {
     }
 
     @NonNull
-    @Column(name = "IS_AUTHORIZED")
-    public boolean isAuthorized() {
-        return isAuthorized;
+    @Column(name = "IS_BLOCKED")
+    public boolean isBlocked() {
+        return isBlocked;
     }
 
     public void blockUser() {
-        this.isAuthorized = false;
+        this.isBlocked = true;
     }
     public void unblockUser() {
-        this.isAuthorized = true;
+        this.isBlocked = false;
     }
 
     @OneToMany(
@@ -113,7 +113,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", isAuthorized=" + isAuthorized +
+                ", isAuthorized=" + isBlocked +
                 ", orderList=" + orderList +
                 '}';
     }
