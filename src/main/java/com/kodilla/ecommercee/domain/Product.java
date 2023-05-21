@@ -22,12 +22,14 @@ public class Product {
     public Product(final String productName,
                    final String productDescription,
                    final int productQuantity,
-                   final BigDecimal productPrice)
+                   final BigDecimal productPrice,
+                   final Group group)
     {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        this.group = group;
     }
 
     @Id
