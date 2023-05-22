@@ -25,7 +25,18 @@ public class User {
 
     private List<Order> orderList;
 
-    public User(Long userId, String firstname, String lastname, String username, String address,
+    public User(String firstname, String lastname, String username, String address,
+                String phoneNumber, String email, Boolean isBlocked){
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.isBlocked = isBlocked;
+    }
+
+    public User(long userId, String firstname, String lastname, String username, String address,
                 String phoneNumber, String email, Boolean isBlocked){
         this.userId = userId;
         this.firstname = firstname;
@@ -36,7 +47,6 @@ public class User {
         this.email = email;
         this.isBlocked = isBlocked;
     }
-
     @Id
     @GeneratedValue
     @NonNull

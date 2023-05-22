@@ -32,7 +32,7 @@ public class UserTestSuite {
     @Test
     void testCreateUser() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
 
         //When
@@ -47,9 +47,9 @@ public class UserTestSuite {
     void testFindAll() {
         //Given
         List<User> userList = new ArrayList<>();
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
-        User user2 = new User(2L, "Name2", "Lastname2", "Username2",
+        User user2 = new User( "Name2", "Lastname2", "Username2",
                 "Address2", "123456780", "Mail2", false);
         userList.add(user);
         userList.add(user2);
@@ -66,7 +66,7 @@ public class UserTestSuite {
     @Test
     void testFindById() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User(1L,"Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
 
         //When
@@ -80,9 +80,9 @@ public class UserTestSuite {
     @Test
     void testDeleteById() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
-        User user2 = new User(2L, "Name2", "Lastname2", "Username2",
+        User user2 = new User("Name2", "Lastname2", "Username2",
                 "Address2", "123456780", "Mail2", false);
         Order order = new Order(LocalDate.of(2023,2,2), true, user);
         List<Order> orderList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class UserTestSuite {
     @Test
     void testKeyGenerator() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
 
         //Then & When
@@ -116,7 +116,7 @@ public class UserTestSuite {
     @Test
     void TestKeyGeneratorWithBlockedUser() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
 
         //Then & When

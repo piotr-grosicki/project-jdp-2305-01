@@ -28,7 +28,7 @@ public class OrderTestSuite {
     @Test
     void createOrderTest() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2023,4,2), true, user);
 
@@ -43,7 +43,7 @@ public class OrderTestSuite {
     @Test
     void getAllOrdersTest(){
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
@@ -64,7 +64,7 @@ public class OrderTestSuite {
     @Test
     void getOrderByIdTest(){
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
@@ -81,7 +81,7 @@ public class OrderTestSuite {
     @Test
     void deleteOrder_andWithoutDeleteUserTest() {
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
@@ -106,7 +106,7 @@ public class OrderTestSuite {
     @Test
     void orderModificationTest(){
         //Given
-        User user = new User(1L, "Name", "Lastname", "Username",
+        User user = new User("Name", "Lastname", "Username",
                 "Address", "123456789", "Mail", false);
         Order order1 = new Order(LocalDate.of(2022,5,8),false, user);
         Order order2 = new Order(LocalDate.of(2023,3,2),true, user);
