@@ -5,6 +5,8 @@ import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -27,5 +29,9 @@ public class ProductService {
 
     public void deleteProduct(final Long id) {
         repository.deleteById(id);
+    }
+
+    public Product findProductPrice(BigDecimal price) {
+        return repository.findProductByProductPrice(price);
     }
 }

@@ -3,6 +3,8 @@ package com.kodilla.ecommercee.domain;
 import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @NoArgsConstructor
@@ -17,13 +19,13 @@ public class Product {
     private BigDecimal productPrice;
 
     private Group group;
-    //private List<Cart> cartList = new ArrayList<>();
+    private List<Cart> cart = new ArrayList<>();
 
-    public Product(final String productName,
-                   final String productDescription,
-                   final int productQuantity,
-                   final BigDecimal productPrice,
-                   final Group group)
+    public Product(String productName,
+                   String productDescription,
+                   int productQuantity,
+                   BigDecimal productPrice,
+                   Group group)
     {
         this.productName = productName;
         this.productDescription = productDescription;
@@ -33,8 +35,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRODUCT_ID",unique = true)
     public Long getProductId(){return productId;}
 
@@ -58,12 +59,25 @@ public class Product {
     @JoinColumn(name = "GROUP_ID")
     public Group getGroup(){return group;}
 
-    //    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "JOIN_PRODUCT_CART",
-//            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
-//            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")})
-//    public List<Cart> getCart() {return cart;}
-//
-//    private void setCart(List<Cart> cart) {this.cart = cart;}
+    @ManyToMany
+    @JoinTable(
+            name = "JOIN_PRODUCT_CART",
+            joinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")})
+    public List<Cart> getCart() {return cart;}
+
+    private void setCart(List<Cart> cart) {this.cart = cart;}
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", productQuantity=" + productQuantity +
+                ", productPrice=" + productPrice +
+                ", group=" + group +
+                ", cart=" + cart +
+                '}';
+    }
 }
