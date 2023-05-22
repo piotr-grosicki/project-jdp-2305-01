@@ -5,10 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class UserDto {
-    private Long id;
-    private String userName;
-    private boolean isAuthorized;
-    private boolean keyIsActive;
+    private Long userId;
+    private String firstname;
+    private String lastname;
+    private String username;
+    private String address;
+    private String phoneNumber;
+    private String email;
+    private boolean isBlocked;
+
 }
