@@ -15,7 +15,6 @@ public class Product {
     private String productDescription;
     private int productQuantity;
     private BigDecimal productPrice;
-
     private Group group;
     //private List<Cart> cartList = new ArrayList<>();
 
@@ -33,7 +32,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @NonNull
     @Column(name = "PRODUCT_ID",unique = true)
     public Long getProductId(){return productId;}
@@ -54,7 +53,7 @@ public class Product {
     @Column(name = "PRODUCT_PRICE")
     public BigDecimal getProductPrice(){return productPrice;}
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "GROUP_ID")
     public Group getGroup(){return group;}
 

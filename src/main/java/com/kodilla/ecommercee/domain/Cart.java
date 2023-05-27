@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "CART")
 public class Cart {
+
     Long cartId;
     BigDecimal totalPrice;
 
