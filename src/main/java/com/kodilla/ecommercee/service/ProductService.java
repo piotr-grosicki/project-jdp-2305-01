@@ -1,10 +1,13 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.Product;
+import com.kodilla.ecommercee.dto.ProductDto;
 import com.kodilla.ecommercee.exception.ProductNotFoundException;
+import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -12,6 +15,7 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository repository;
+    private final ProductMapper productMapper;
 
     public List<Product> getAllProducts() {
         return repository.findAll();
@@ -26,6 +30,16 @@ public class ProductService {
     }
 
     public void deleteProduct(final Long id) {
+        repository.deleteById(id);
+    }
+
+    public ProductDto updateProduct(final ProductDto productDto) {
+        Product product = productMapper.mapToProduct(productDto);
+        return productMapper.mapToProductDto(repository.save(product));
+    }
+
+    public void deleteProduct(Product byProductId) {
+        Long id = byProductId.getProductId();
         repository.deleteById(id);
     }
 }
