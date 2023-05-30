@@ -38,9 +38,8 @@ public class ProductService {
         return productMapper.mapToProductDto(repository.save(product));
     }
 
-    public Object deleteProduct(Product byProductId) {
+    public void deleteProduct(Product byProductId) {
         Long id = byProductId.getProductId();
         repository.deleteById(id);
-        return null;
     }
 }

@@ -37,6 +37,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -248,7 +249,7 @@ public class ProductTestSuite {
         Group groupDb = groupRepository.findByGroupId(group.getGroupId());
         productRepository.deleteById(product.getProductId());
 
-        when(service.deleteProduct(product)).thenReturn(null);
+        doNothing().when(service).deleteProduct(product);
 
         // Then
         MvcResult mvcResult = null;
